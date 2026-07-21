@@ -24,3 +24,28 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+@theme {
+  /* Slate (그레이 계열) */
+  --color-slate-900: #0F172A;
+  --color-slate-800: #1E293B;
+  --color-slate-500: #64748B;
+  --color-slate-400: #94A3B8;
+  --color-slate-300: #CBD5E1;
+  --color-slate-200: #E2E8F0;
+  --color-slate-100: #F1F5F9;
+
+  /* Violet (포인트 컬러 - primary로 보임) */
+  --color-violet-600: #7C3AED;
+  --color-violet-100: #EDE9FE;
+
+  /* Rose (경고/삭제 등) */
+  --color-rose-500: #F43F5E;
+
+  /* Lime (성공/완료 등) */
+  --color-lime-300: #BEF264;
+
+  /* Amber */
+  --color-amber-800: #92400E;
+}
