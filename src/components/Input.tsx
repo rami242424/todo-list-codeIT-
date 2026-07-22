@@ -4,13 +4,14 @@ type InputProps = {
     placeholder?: string;
 };
 
-export default function Input({ value, onChange, placeholder }: InputProps){
+export default function Input ({value, onChange, placeholder} : InputProps){
     return(
         <input
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder}
-            className="w-full rounded-full border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-600"
+            // 피그마보고수정해야함 지금 임의값임
+            className="h-[52px] flex-1 rounded-3xl border-2 border-slate-900 px-4"
         />
     );
 }

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Input from "./components/Input";
-import Button from "./components/Button";
-import IconButton from "./components/IconButton";
-import { getTodos, createTodo, updateTodo, type Todo } from "./lib/api";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import IconButton from "../components/IconButton";
+import { getTodos, createTodo, updateTodo, type Todo } from "../lib/api";
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
