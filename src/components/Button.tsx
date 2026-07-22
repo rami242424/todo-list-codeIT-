@@ -15,7 +15,7 @@ export default function Button({ variant, children, onClick } : ButtonProps){
     return(
         <button 
             onClick={onClick}
-            className= {`${variantStyles[variant]} rounded-full px-4 py-2`}
+            className={`${variantStyles[variant]} whitespace-nowrap rounded-full px-4 py-2`}
         >
             {children}
         </button>

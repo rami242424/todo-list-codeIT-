@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquare.css");
 
 :root {
   --background: #ffffff;
@@ -48,4 +49,7 @@ body {
 
   /* Amber */
   --color-amber-800: #92400E;
+
+  /* 폰트 */
+  --font-nanum: "NanumSquare", sans-serif;
 }

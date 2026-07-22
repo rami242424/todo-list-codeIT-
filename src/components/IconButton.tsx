@@ -4,7 +4,7 @@ type IconBtnProps = {
     onClick?: () => void;
 }
 
-export default function IconBtn({
+export default function IconButton({
     variant = "default",
     checked = false,
     onClick,
