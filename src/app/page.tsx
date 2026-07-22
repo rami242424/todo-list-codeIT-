@@ -55,7 +55,7 @@ export default function Home(){
           <h2>TO DO</h2>
           <ul className="flex flex-col gap-2">
             {todoItems.map((todo) => (
-              <li key={todo.id} className="rounded-3xl border-2 border-slate-900 px-4 py-3">
+              <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
                 <button
                   onClick={() => handleToggle(todo.id)}
                 >
@@ -71,7 +71,7 @@ export default function Home(){
           <h2>DONE</h2>
           <ul className="flex flex-col gap-2">
             {doneItems.map((todo) => (
-              <li key={todo.id} className="rounded-3xl border-2 border-slate-900 px-4 py-3">
+              <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
                 <button
                   onClick={() => handleToggle(todo.id)}
                 >
