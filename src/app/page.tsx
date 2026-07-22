@@ -32,13 +32,18 @@ export default function Home(){
   }
   const todoItems = todos.filter((todo) => !todo.isCompleted);
   const doneItems = todos.filter((todo) => todo.isCompleted);
-
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === "Enter"){
+      handleAdd();
+    }
+  }
   return(
     <main className="mx-auto max-w-3xl p-6">
       <div className="mb-6 flex gap-2">
         <Input 
           value = {text}
           onChange = {setText}
+          onKeyDown={handleKeyDown}
           placeholder ="할 일을 입력해 주세요."
         />
         <Button 
