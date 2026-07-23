@@ -43,7 +43,8 @@ export default function Home(){
         <Input 
           value = {text}
           onChange = {setText}
-          onKeyDown={handleKeyDown}
+          
+          
           placeholder ="할 일을 입력해 주세요."
         />
         <Button 
