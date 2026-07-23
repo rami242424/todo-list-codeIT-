@@ -3,6 +3,9 @@ import Button from "@/components/Button"
 import Input from "@/components/Input"
 import { useState } from "react"
 
+import { useEffect } from "react";
+import { getTodos } from "@/lib/api";
+
 type Todo = {
   id: number;
   name: string;
@@ -37,6 +40,9 @@ export default function Home(){
       handleAdd();
     }
   }
+  useEffect(() => {
+  getTodos();
+}, [])
   return(
     <main className="mx-auto max-w-3xl p-6">
       <div className="mb-6 flex gap-2">
