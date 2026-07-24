@@ -13,19 +13,10 @@ export type Todo = {
 };
 
 /** 할 일 목록 조회 */
-// export async function getTodos(): Promise<Todo[]> {
-//   const res = await fetch(`${BASE_URL}/items`);
-//   if (!res.ok) throw new Error("목록 조회에 실패했습니다.");
-//   return res.json();
-// }
-export async function getTodos() {
-  const res = await fetch("https://assignment-todolist-api.vercel.app/api/rami242424/items");
-  if(!res.ok) {
-    throw new Error("목록조회에 실패했습니다.")
-  }
-  const json = await res.json()
-  console.log(json);
-  return json;
+export async function getTodos() : Promise<Todo[]> {
+  const res = await fetch(`${BASE_URL}/items`);
+  if(!res.ok) throw new Error("목록 조회에 실패했습니다.");
+  return res.json();
 }
 /** 할 일 생성 */
 export async function createTodo(name: string): Promise<Todo> {
