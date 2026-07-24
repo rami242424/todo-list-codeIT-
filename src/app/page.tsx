@@ -4,7 +4,7 @@ import Input from "@/components/Input"
 import { useState } from "react"
 
 import { useEffect } from "react";
-import { getTodos } from "@/lib/api";
+import { createTodo, getTodos } from "@/lib/api";
 
 type Todo = {
   id: number;
@@ -16,15 +16,21 @@ type Todo = {
 export default function Home(){
   const [text, setText] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
-  const handleAdd = () => {
-    if(!text.trim()) return;
-    const newTodo: Todo = {
-      id: Date.now(),
-      name: text.trim(),
-      isCompleted: false,
-    };
-    setTodos([...todos, newTodo]);
-    setText("");
+  // const handleAdd = () => {
+  //   if(!text.trim()) return;
+  //   const newTodo: Todo = {
+  //     id: Date.now(),
+  //     name: text.trim(),
+  //     isCompleted: false,
+  //   };
+  //   createTodo(text);
+  //   setTodos([...todos, newTodo]);
+  //   setText("");
+  // }
+  const handleAdd = async() => {
+    const newTodo = await createTodo(text.trim()) ;
+    createTodo(text);
+    setTodos()
   }
   const handleToggle = (id: number) => {
     setTodos(
