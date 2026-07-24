@@ -19,15 +19,39 @@ export async function getTodos() : Promise<Todo[]> {
   return res.json();
 }
 /** 할 일 생성 */
-export async function createTodo(name: string): Promise<Todo> {
+export async function createTodo(name:string) : Promise<Todo>{
   const res = await fetch(`${BASE_URL}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type" : "application/json" },
     body: JSON.stringify({ name }),
   });
-  if (!res.ok) throw new Error("할 일 생성에 실패했습니다.");
+  if(!res.ok) throw new Error("목록 생성에 실패했습니다.");
   return res.json();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export async function createTodo(name: string): Promise<Todo> {
+//   const res = await fetch(`${BASE_URL}/items`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ name }),
+//   });
+//   if (!res.ok) throw new Error("할 일 생성에 실패했습니다.");
+//   return res.json();
+// }
 
 /** 할 일 수정 (이름, 메모, 이미지, 완료 상태) */
 export async function updateTodo(
