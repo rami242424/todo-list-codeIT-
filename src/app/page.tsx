@@ -28,9 +28,10 @@ export default function Home(){
   //   setText("");
   // }
   const handleAdd = async() => {
-    const newTodo = await createTodo(text.trim()) ;
-    createTodo(text);
-    setTodos()
+    if(!text.trim()) return;
+    const newTodo = await createTodo(text.trim());
+    setTodos([...todos, newTodo]);
+    setText("");
   }
   const handleToggle = (id: number) => {
     setTodos(
