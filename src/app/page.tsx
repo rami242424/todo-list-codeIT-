@@ -4,42 +4,24 @@ import Input from "@/components/Input"
 import { useState } from "react"
 
 import { useEffect } from "react";
-import { createTodo, getTodos } from "@/lib/api";
-
-type Todo = {
-  id: number;
-  name: string;
-  isCompleted: boolean;
-}
+import { createTodo, getTodos, type Todo, updateTodo } from "@/lib/api";
 
 
 export default function Home(){
   const [text, setText] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
-  // const handleAdd = () => {
-  //   if(!text.trim()) return;
-  //   const newTodo: Todo = {
-  //     id: Date.now(),
-  //     name: text.trim(),
-  //     isCompleted: false,
-  //   };
-  //   createTodo(text);
-  //   setTodos([...todos, newTodo]);
-  //   setText("");
-  // }
   const handleAdd = async() => {
     if(!text.trim()) return;
     const newTodo = await createTodo(text.trim());
-    setTodos([...todos, newTodo]);
+    setTodos((prev) => [...prev, newTodo]);
     setText("");
   }
-  const handleToggle = (id: number) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? {...todo, isCompleted: !todo.isCompleted} : todo
-      )
-    );
-  }
+  const handleToggle = async(todo: Todo) => {
+    const updated = await updateTodo(todo.id, {
+      isCompleted: !todo.isCompleted,
+    });
+    setTodos((prev) => prev.map((t) => t.id === todo.id ? updated : t));
+  };
   const todoItems = todos.filter((todo) => !todo.isCompleted);
   const doneItems = todos.filter((todo) => todo.isCompleted);
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -75,7 +57,7 @@ export default function Home(){
             {todoItems.map((todo) => (
               <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
                 <button
-                  onClick={() => handleToggle(todo.id)}
+                  onClick={() => handleToggle(todo)}
                 >
                   {/* 추후 수정해야함 */}
                   {todo.isCompleted ? "✓" : "○"}
@@ -91,7 +73,7 @@ export default function Home(){
             {doneItems.map((todo) => (
               <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
                 <button
-                  onClick={() => handleToggle(todo.id)}
+                  onClick={() => handleToggle(todo)}
                 >
                   {/* 추후 수정해야함 */}
                   {todo.isCompleted ? "✓" : "○"}

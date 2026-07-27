@@ -14,7 +14,7 @@ export type Todo = {
 
 /** 할 일 목록 조회 */
 export async function getTodos() : Promise<Todo[]> {
-  const res = await fetch(`${BASE_URL}/items`);
+  const res = await fetch(`${BASE_URL}/items?page=1&pageSize=100`);
   if(!res.ok) throw new Error("목록 조회에 실패했습니다.");
   return res.json();
 }
