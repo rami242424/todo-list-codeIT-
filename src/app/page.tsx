@@ -5,6 +5,7 @@ import { useState } from "react"
 
 import { useEffect } from "react";
 import { createTodo, getTodos, type Todo, updateTodo } from "@/lib/api";
+import Link from "next/link";
 
 
 export default function Home(){
@@ -62,7 +63,9 @@ export default function Home(){
                   {/* 추후 수정해야함 */}
                   {todo.isCompleted ? "✓" : "○"}
                 </button>
-                <span>{todo.name}</span>
+                <Link href={`/items/${todo.id}`} className="flex-1">
+                  {todo.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -78,7 +81,9 @@ export default function Home(){
                   {/* 추후 수정해야함 */}
                   {todo.isCompleted ? "✓" : "○"}
                 </button>
-                <span>{todo.name}</span>
+                <Link href={`/items/${todo.id}`} className="flex-1">
+                  {todo.name}
+                </Link>
               </li>
             ))}
           </ul>
