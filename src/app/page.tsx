@@ -48,8 +48,8 @@ export default function Home(){
     }
   }
   useEffect(() => {
-  getTodos();
-}, [])
+    getTodos().then((data) => setTodos(data));
+  }, []);
   return(
     <main className="mx-auto max-w-3xl p-6">
       <div className="mb-6 flex gap-2">
