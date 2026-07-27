@@ -58,21 +58,10 @@ export async function updateTodo(
   return res.json();
 }
 
+/** 상세페이지 조회 */
+export async function getTodo(id: number): Promise<Todo>{
+  const res = await fetch(`${BASE_URL}/items/${id}`)
+  if(!res.ok) throw new Error("상세페이지 조회에 실패했습니다.")
+  return res.json();
+}
 
-
-
-
-
-/** 할 일 수정 (이름, 메모, 이미지, 완료 상태) */
-// export async function updateTodo(
-//   id: number,
-//   data: { name?: string; memo?: string; imageUrl?: string; isCompleted?: boolean }
-// ): Promise<Todo> {
-//   const res = await fetch(`${BASE_URL}/items/${id}`, {
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(data),
-//   });
-//   if (!res.ok) throw new Error("할 일 수정에 실패했습니다.");
-//   return res.json();
-// }
