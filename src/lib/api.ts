@@ -18,6 +18,7 @@ export async function getTodos() : Promise<Todo[]> {
   if(!res.ok) throw new Error("목록 조회에 실패했습니다.");
   return res.json();
 }
+
 /** 할 일 생성 */
 export async function createTodo(name:string) : Promise<Todo>{
   const res = await fetch(`${BASE_URL}/items`, {
@@ -29,6 +30,7 @@ export async function createTodo(name:string) : Promise<Todo>{
   return res.json();
 }
 
+/** 할 일 삭제 */
 export async function deleteTodo(id:number) : Promise<void>{
   const res = await fetch(`${BASE_URL}/items/${id}`,{
     method: "DELETE"
@@ -36,7 +38,25 @@ export async function deleteTodo(id:number) : Promise<void>{
   if(!res.ok) throw new Error("목록을 지울 수 없습니다")
 }
 
+/** 할 일 수정 */
+export async function updateTodo(
+    id:number,
+    data: {
+      name?: string;
+      memo?: string;
+      imageUrl?: string;
+      isCompleted?: boolean;
+    }
+  ) : Promise<Todo>{
 
+  const res = await fetch(`${BASE_URL}/items/${id}`,{
+    method: "PATCH",
+    headers: { "Content-Type" : "application/json" },
+    body: JSON.stringify(data),
+  });
+  if(!res.ok) throw new Error("목록 수정에 실패했습니다.");
+  return res.json();
+}
 
 
 
