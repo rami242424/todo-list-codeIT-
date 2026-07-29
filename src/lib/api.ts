@@ -65,3 +65,16 @@ export async function getTodo(id: number): Promise<Todo>{
   return res.json();
 }
 
+/** 이미지 업로드 */ 
+export async function uploadImage(file: File): Promise<{url: string}>{
+  const formData = new FormData();
+  formData.append("image", file);
+
+  const res = await fetch(`${BASE_URL}/images/upload`, {
+    method: "POST",
+    body: formData,
+  });
+  if(!res.ok) throw new Error("이미지 업로드에 실패했습니다.");
+
+  return res.json();
+}
