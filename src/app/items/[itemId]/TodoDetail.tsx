@@ -69,7 +69,7 @@ export default function TodoDetail({todo} : {todo: Todo}){
                 {imageUrl ? (
                 <img src={imageUrl} alt="첨부 이미지" className="h-full w-full rounded-3xl object-cover" />
                 ) : (
-                <span className="text-4xl text-slate-300">🖼️</span>
+                <img src="/img.png" alt="이미지 없음" className="h-16 w-16" />
                 )}
                 {/* + 버튼 */}
                 <label className="absolute bottom-4 right-4 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border-2 border-slate-900 bg-slate-200 text-2xl">
@@ -79,15 +79,21 @@ export default function TodoDetail({todo} : {todo: Todo}){
             </div>
 
             {/* 메모 영역 */}
-            <div className="relative flex-1 rounded-3xl bg-amber-100 p-4"  style={{ backgroundImage: "url('/memo.png')" }}>
+            <div
+                className="relative flex flex-1 flex-col rounded-3xl bg-amber-100 bg-cover bg-center p-4"
+                style={{ backgroundImage: "url('/memo.png')" }}
+            >
                 <p className="mb-2 text-center font-bold text-amber-800">Memo</p>
-                <textarea
-                value={memo}
-                onChange={(e) => setMemo(e.target.value)}
-                placeholder="메모를 입력하세요."
-                className="h-[240px] w-full resize-none bg-transparent text-center focus:outline-none"
-                />
-            </div>
+                <div className="flex flex-1 items-center justify-center">
+                    <textarea
+                        value={memo}
+                        onChange={(e) => setMemo(e.target.value)}
+                        placeholder="메모를 입력하세요."
+                        className="w-full resize-none bg-transparent text-center focus:outline-none"
+                        rows={3}
+                    />
+                </div>
+                </div>
             </div>
 
             {/* 버튼 */}
