@@ -8,6 +8,7 @@ import { createTodo, getTodos, type Todo, updateTodo } from "@/lib/api";
 import Link from "next/link";
 
 
+
 export default function Home(){
   const [text, setText] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -34,7 +35,7 @@ export default function Home(){
     getTodos().then((data) => setTodos(data));
   }, []);
   return(
-    <main className="mx-auto max-w-3xl p-6">
+    <main className="mx-auto w-full max-w-5xl p-6">
       <div className="mb-6 flex gap-2">
         <Input 
           value = {text}
@@ -53,15 +54,16 @@ export default function Home(){
       </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <section>
-          <h2>TO DO</h2>
+          <img src="/todo.png" alt="TO DO" className="mb-3 h-[36px]" />
           <ul className="flex flex-col gap-2">
             {todoItems.map((todo) => (
               <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
                 <button
                   onClick={() => handleToggle(todo)}
                 >
-                  {/* 추후 수정해야함 */}
-                  {todo.isCompleted ? "✓" : "○"}
+                 {todo.isCompleted 
+                  ? <img src="/completed.png" alt="완료" className="h-8 w-8" /> 
+                  : <img src="/incomplete.svg" alt="미완료" className="h-8 w-8" />}
                 </button>
                 <Link href={`/items/${todo.id}`} className="flex-1">
                   {todo.name}
@@ -71,15 +73,16 @@ export default function Home(){
           </ul>
         </section>
         <section>
-          <h2>DONE</h2>
+          <img src="/done.svg" alt="DONE" className="mb-3 h-[36px]" />
           <ul className="flex flex-col gap-2">
             {doneItems.map((todo) => (
-              <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
+              <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 bg-violet-100 px-4 py-3">
                 <button
                   onClick={() => handleToggle(todo)}
                 >
-                  {/* 추후 수정해야함 */}
-                  {todo.isCompleted ? "✓" : "○"}
+                  {todo.isCompleted 
+                    ? <img src="/completed.png" alt="완료" className="h-8 w-8" /> 
+                    : <img src="/incomplete.svg" alt="미완료" className="h-8 w-8" />}
                 </button>
                 <Link href={`/items/${todo.id}`} className="flex-1">
                   {todo.name}
