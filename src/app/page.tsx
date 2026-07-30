@@ -55,41 +55,55 @@ export default function Home(){
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <section>
           <img src="/todo.png" alt="TO DO" className="mb-3 h-[36px]" />
-          <ul className="flex flex-col gap-2">
-            {todoItems.map((todo) => (
-              <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
-                <button
-                  onClick={() => handleToggle(todo)}
-                >
-                 {todo.isCompleted 
-                  ? <img src="/completed.png" alt="완료" className="h-8 w-8" /> 
-                  : <img src="/incomplete.svg" alt="미완료" className="h-8 w-8" />}
-                </button>
-                <Link href={`/items/${todo.id}`} className="flex-1">
-                  {todo.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <img src="/done.svg" alt="DONE" className="mb-3 h-[36px]" />
-          <ul className="flex flex-col gap-2">
-            {doneItems.map((todo) => (
-              <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 bg-violet-100 px-4 py-3">
-                <button
-                  onClick={() => handleToggle(todo)}
-                >
+          {todoItems.length === 0 ? (
+            <div className="flex flex-col items-center py-10 text-slate-400">
+              <img src="/empty-todo.png" alt="할 일 없음" className="mb-4 h-60 w-60" />
+              <p className="text-center">할 일이 없어요.<br />TODO를 새롭게 추가해주세요!</p>
+            </div>
+          ) : (
+            <ul className="flex flex-col gap-2">
+              {todoItems.map((todo) => (
+                <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
+                  <button
+                    onClick={() => handleToggle(todo)}
+                  >
                   {todo.isCompleted 
                     ? <img src="/completed.png" alt="완료" className="h-8 w-8" /> 
                     : <img src="/incomplete.svg" alt="미완료" className="h-8 w-8" />}
-                </button>
-                <Link href={`/items/${todo.id}`} className="flex-1">
-                  {todo.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  </button>
+                  <Link href={`/items/${todo.id}`} className="flex-1">
+                    {todo.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+        )}
+        </section>
+        <section>
+          <img src="/done.svg" alt="DONE" className="mb-3 h-[36px]" />
+          {doneItems.length === 0 ? (
+            <div className="flex flex-col items-center py-10 text-slate-400">
+              <img src="/empty-done.png" alt="완료된 일 없음" className="mb-4 h-60 w-60" />
+              <p className="text-center">아직 다 한 일이 없어요.<br />해야 할 일을 체크해보세요!</p>
+            </div>
+          ) : (
+            <ul className="flex flex-col gap-2">
+              {doneItems.map((todo) => (
+                <li key={todo.id} className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 bg-violet-100 px-4 py-3">
+                  <button
+                    onClick={() => handleToggle(todo)}
+                  >
+                    {todo.isCompleted 
+                      ? <img src="/completed.png" alt="완료" className="h-8 w-8" /> 
+                      : <img src="/incomplete.svg" alt="미완료" className="h-8 w-8" />}
+                  </button>
+                  <Link href={`/items/${todo.id}`} className="flex-1">
+                    {todo.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
       </div>
     </main>

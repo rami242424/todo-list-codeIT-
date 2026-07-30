@@ -23,7 +23,7 @@ export default function TodoDetail({todo} : {todo: Todo}){
         }
 
         //검증2: 5mb 이하 파일만
-        if(file.size > 5 * 1025 * 1024){
+        if(file.size > 5 * 1024 * 1024){
             alert("파일 크기는 5MB 이하여야 합니다.");
             return;
         }
@@ -44,47 +44,67 @@ export default function TodoDetail({todo} : {todo: Todo}){
         router.push("/");
     }
 
-    return(
-        <div className="mx-auto max-w-3xl p-6">
-             {/* 이름 + 완료 토글 */}
-            <div className="mb-6 flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3">
-                <button onClick={() => setIsCompleted(!isCompleted)}>
-                    {isCompleted ? "✓" : "○"}
-                </button>
-                <input value={name} onChange={(e) => setName(e.target.value)} className="flex-1 text-center"/>
+    return (
+        <div className="mx-auto w-full max-w-4xl p-6">
+            {/* 이름 + 완료 토글 */}
+            <div className={`mb-6 flex items-center justify-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3 ${isCompleted ? "bg-violet-100" : "bg-white"}`}>
+            <button onClick={() => setIsCompleted(!isCompleted)}>
+                <img
+                src={isCompleted ? "/completed.png" : "/incomplete.svg"}
+                alt={isCompleted ? "완료" : "미완료"}
+                className="h-8 w-8"
+                />
+            </button>
+            <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="bg-transparent text-center text-lg font-bold underline focus:outline-none"
+            />
             </div>
 
-            {/* 이미지 */}
-            <div className="mb-6">
-                {imageUrl && (
-                    <img src={imageUrl} alt="첨부 이미지" className="mb-2 h-40 rounded-2xl object-cover" />
+            {/* 이미지 + 메모 (가로 배치) */}
+            <div className="mb-6 flex flex-col gap-4 md:flex-row">
+            {/* 이미지 영역 */}
+            <div className="relative flex h-[311px] w-full items-center justify-center rounded-3xl border-2 border-dashed border-slate-300 bg-slate-50 md:w-[384px]">
+                {imageUrl ? (
+                <img src={imageUrl} alt="첨부 이미지" className="h-full w-full rounded-3xl object-cover" />
+                ) : (
+                <span className="text-4xl text-slate-300">🖼️</span>
                 )}
-                <input type="file" accept="image/*" onChange={handleImageChange} />
+                {/* + 버튼 */}
+                <label className="absolute bottom-4 right-4 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border-2 border-slate-900 bg-slate-200 text-2xl">
+                +
+                <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+                </label>
             </div>
 
-            {/* 메모 */}
-            <textarea
+            {/* 메모 영역 */}
+            <div className="relative flex-1 rounded-3xl bg-amber-100 p-4"  style={{ backgroundImage: "url('/memo.png')" }}>
+                <p className="mb-2 text-center font-bold text-amber-800">Memo</p>
+                <textarea
                 value={memo}
                 onChange={(e) => setMemo(e.target.value)}
                 placeholder="메모를 입력하세요."
-                className="mb-6 h-40 w-full rounded-3xl border-2 border-slate-900 p-4"
-            />
+                className="h-[240px] w-full resize-none bg-transparent text-center focus:outline-none"
+                />
+            </div>
+            </div>
 
             {/* 버튼 */}
-            <div className="flex gap-3">
-                <button
-                    className="rounded-3xl border-2 border-slate-900 bg-lime-300 px-4 py-2"
-                    onClick={handleUpdate}
-                >
-                    수정 완료
-                </button>
-                <button
-                    className="rounded-3xl border-2 border-slate-900 bg-lime-300 px-4 py-2"
-                    onClick={handleDelete}
-                >
-                    삭제하기
-                </button>
+            <div className="flex justify-end gap-3">
+            <button
+                onClick={handleUpdate}
+                className={`rounded-3xl border-2 border-slate-900 px-6 py-2 font-bold ${isCompleted ? "bg-lime-300" : "bg-slate-200"}`}
+            >
+                ✓ 수정 완료
+            </button>
+            <button
+                onClick={handleDelete}
+                className="rounded-3xl border-2 border-slate-900 bg-rose-500 px-6 py-2 font-bold text-white"
+            >
+                ✕ 삭제하기
+            </button>
             </div>
         </div>
-    );
+        );
 }
