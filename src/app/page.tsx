@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useEffect } from "react";
 import { createTodo, getTodos, type Todo, updateTodo } from "@/lib/api";
 import Link from "next/link";
+import PlusIcon from "../../PlusIcon";
 
 
 
@@ -52,7 +53,7 @@ export default function Home(){
             state={text ? "active" : "default"}
             onClick={handleAdd}
           >
-            <img src="/plusIcon.png" alt="추가" className="h-6 w-6"/>
+            <PlusIcon />
             추가하기
           </Button>
         </div>
