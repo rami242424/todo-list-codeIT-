@@ -12,11 +12,10 @@ export default function CheckIcon({ className = "h-4 w-4" }: IconProps) {
       aria-hidden="true"
     >
       <path
-        d="M3 8.5L6.5 12L13 4.5"
+        d="M4 4L12 12M12 4L4 12"
         stroke="currentColor"
-        strokeWidth="2.5"
+        strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   );

@@ -12,9 +12,9 @@ export default function CheckIcon({ className = "h-4 w-4" }: IconProps) {
       aria-hidden="true"
     >
       <path
-        d="M3 8.5L6.5 12L13 4.5"
+        d="M2.5 8.5L6 12L13.5 4.5"
         stroke="currentColor"
-        strokeWidth="2.5"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
