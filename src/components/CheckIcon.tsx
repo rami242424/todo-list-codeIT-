@@ -1,3 +1,8 @@
+/**
+ * 체크(✓) 아이콘 — 수정 완료 버튼에 사용
+ * currentColor를 사용해 버튼 상태에 따라 색상이 자동 전환된다.
+ */
+
 type IconProps = {
   className?: string;
 };

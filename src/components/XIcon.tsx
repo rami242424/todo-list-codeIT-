@@ -1,3 +1,8 @@
+/**
+ * 엑스(✕) 아이콘 — 삭제하기 버튼에 사용
+ * currentColor를 사용해 버튼의 텍스트 색상을 따라간다.
+ */
+
 type IconProps = {
   className?: string;
 };

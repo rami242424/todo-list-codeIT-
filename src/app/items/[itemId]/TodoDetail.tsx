@@ -7,6 +7,13 @@ import Button from "@/components/Button";
 import CheckIcon from "@/components/CheckIcon";
 import XIcon from "@/components/XIcon";
 
+/**
+ * 할 일 상세/수정 컴포넌트
+ *
+ * 서버에서 받은 초기 데이터를 각각의 state 초기값으로 사용하고,
+ * 사용자가 편집한 내용은 "수정 완료" 버튼을 눌렀을 때 한 번에 서버로 전송한다.
+ * (입력할 때마다 요청을 보내지 않아 불필요한 통신을 줄임)
+ */
 export default function TodoDetail({ todo }: { todo: Todo }) {
   const router = useRouter();
   const [name, setName] = useState(todo.name);
@@ -14,35 +21,38 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
   const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
   const [imageUrl, setImageUrl] = useState(todo.imageUrl ?? "");
 
-  // 파일 선택 핸들러
+  /**
+   * 이미지 파일 선택 처리
+   * 과제 요구사항에 따라 업로드 전 두 가지를 검증한다.
+   */
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // 검증1: 파일명 영어만
+    // 검증1: 파일명은 영문/숫자/일부 기호만 허용
     if (!/^[a-zA-Z0-9._-]+$/.test(file.name)) {
       alert("파일 이름은 영어로만 이루어져야 합니다.");
       return;
     }
 
-    // 검증2: 5MB 이하 파일만
+    // 검증2: 5MB 이하만 허용
     if (file.size > 5 * 1024 * 1024) {
       alert("파일 크기는 5MB 이하여야 합니다.");
       return;
     }
 
-    // 업로드
+    // 업로드 후 반환된 URL을 미리보기에 반영
     const result = await uploadImage(file);
     setImageUrl(result.url);
   };
 
-  // 수정 완료: 서버에 저장하고 목록으로
+  /** 수정 완료: 변경 사항을 저장하고 목록 페이지로 이동 */
   const handleUpdate = async () => {
     await updateTodo(todo.id, { name, memo, isCompleted, imageUrl });
     router.push("/");
   };
 
-  // 삭제: 서버에서 지우고 목록으로
+  /** 삭제: 항목을 제거하고 목록 페이지로 이동 */
   const handleDelete = async () => {
     await deleteTodo(todo.id);
     router.push("/");
@@ -50,12 +60,17 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
 
   return (
     <div className="mx-auto w-full max-w-4xl p-6">
-      {/* 이름 + 완료 토글 */}
+      {/* 이름 입력 + 완료 상태 토글 */}
       <div
         className={`mb-6 flex items-center justify-center rounded-3xl border-2 border-slate-900 px-4 py-3 ${
           isCompleted ? "bg-violet-100" : "bg-white"
         }`}
       >
+        {/*
+          체크 버튼과 이름을 하나로 묶어 가운데 정렬한다.
+          input이 남은 공간을 모두 차지하면 아이콘과 텍스트가 벌어지므로
+          내부 컨테이너로 감싸 둘이 붙어 있도록 처리했다.
+        */}
         <div className="flex items-center gap-3">
           <button onClick={() => setIsCompleted(!isCompleted)}>
             <img
@@ -68,12 +83,12 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="bg-transparent text-lg font-bold underline focus:outline-none"
-            size={name.length || 1}
+            size={name.length || 1} // 입력값 길이에 맞춰 너비 조절
           />
         </div>
       </div>
 
-      {/* 이미지 + 메모 (가로 배치) */}
+      {/* 이미지 + 메모 (모바일 세로, 태블릿 이상 가로 배치) */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row">
         {/* 이미지 영역 */}
         <div className="relative flex h-[311px] w-full items-center justify-center rounded-3xl border-2 border-dashed border-slate-300 bg-slate-50 md:w-[384px]">
@@ -87,13 +102,13 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
             <img src="/img.png" alt="이미지 없음" className="h-16 w-16" />
           )}
 
-          {/* 사진 추가 버튼 */}
+          {/*
+            사진 추가 버튼
+            label로 file input을 감싸면 label 클릭이 input 클릭으로 전달되므로
+            input은 숨기고 버튼 이미지만 노출한다.
+          */}
           <label className="absolute bottom-4 right-4 h-14 w-14 cursor-pointer">
-            <img
-              src="/addPhotoBtn.png"
-              alt="사진 추가"
-              className="h-full w-full"
-            />
+            <img src="/addPhotoBtn.png" alt="사진 추가" className="h-full w-full" />
             <input
               type="file"
               accept="image/*"
@@ -121,12 +136,12 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
         </div>
       </div>
 
-      {/* 버튼 */}
+      {/* 하단 액션 버튼 */}
       <div className="flex justify-end gap-3">
         <Button
           buttonType="edit"
           size="large"
-          state={isCompleted ? "active" : "default"}
+          state={isCompleted ? "active" : "default"} // 완료 상태일 때 활성 색상
           onClick={handleUpdate}
         >
           <CheckIcon />
