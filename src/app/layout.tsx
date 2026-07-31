@@ -25,11 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="ko" className="h-full antialiased">
+      <body className="min-h-full flex flex-col font-[NanumSquare]">
         <header className="border-b border-slate-200 bg-white">
           <div className="mx-auto max-w-5xl px-6 py-4">
             <Link href="/" className="inline-block">
