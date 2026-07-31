@@ -2,7 +2,7 @@ type IconProps = {
   className?: string;
 };
 
-export default function CheckIcon({ className = "h-4 w-4" }: IconProps) {
+export default function XIcon({ className = "h-4 w-4" }: IconProps) {
   return (
     <svg
       className={className}
