@@ -72,8 +72,9 @@ export default function TodoDetail({todo} : {todo: Todo}){
                 <img src="/img.png" alt="이미지 없음" className="h-16 w-16" />
                 )}
                 {/* + 버튼 */}
-                <label className="absolute bottom-4 right-4 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border-2 border-slate-900 bg-slate-200 text-2xl">
-                +
+                {/* 사진 추가 버튼 */}
+                <label className="absolute bottom-4 right-4 h-14 w-14 cursor-pointer">
+                <img src="/addPhotoBtn.png" alt="사진 추가" className="h-full w-full" />
                 <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
                 </label>
             </div>

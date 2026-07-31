@@ -43,14 +43,32 @@ export default function Home(){
           onKeyDown={handleKeyDown}
           placeholder ="할 일을 입력해 주세요."
         />
-        <Button 
-          buttonType = "add"
-          size = "large"
-          state = {text ? "active" : "default"}
-          onClick = {handleAdd}
-        >
-          추가하기
-        </Button>
+
+        {/* 데스크탑: 추가하기 (텍스트) */}
+        <div className="hidden md:block">
+          <Button 
+            buttonType="add"
+            size="large"
+            state={text ? "active" : "default"}
+            onClick={handleAdd}
+          >
+            <img src="/plusIcon.png" alt="추가" className="h-6 w-6"/>
+            추가하기
+          </Button>
+        </div>
+
+        {/* 모바일: + (아이콘) */}
+        <div className="md:hidden">
+          <Button 
+            buttonType="add"
+            size="small"
+            state={text ? "active" : "default"}
+            onClick={handleAdd}
+          >
+            <img src="/plusBtn.png" alt="추가" className="h-6 w-6"/>
+          </Button>
+        </div>
+
       </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <section>
