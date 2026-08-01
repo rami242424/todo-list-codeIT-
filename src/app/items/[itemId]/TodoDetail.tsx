@@ -79,12 +79,27 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
               className="h-8 w-8"
             />
           </button>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="bg-transparent text-lg font-bold underline focus:outline-none"
-            style={{ width: `${name.length + 1}ch` }}
-          />
+
+          {/*
+            입력값 길이에 맞춰 너비가 자동으로 조절되는 input.
+            같은 그리드 셀에 겹쳐둔 span이 실제 렌더링된 텍스트 폭을 만들고
+            input은 w-full로 그 폭을 따라간다.
+            문자 개수로 폭을 계산하면 한글과 영문의 실제 너비 차이를
+            반영할 수 없어, 브라우저가 직접 측정하도록 했다.
+          */}
+          <div className="inline-grid items-center">
+            <span
+              aria-hidden="true"
+              className="invisible col-start-1 row-start-1 whitespace-pre text-lg font-bold"
+            >
+              {name || " "}
+            </span>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="col-start-1 row-start-1 w-full bg-transparent text-lg font-bold underline focus:outline-none"
+            />
+          </div>
         </div>
       </div>
 
