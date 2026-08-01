@@ -83,7 +83,7 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="bg-transparent text-lg font-bold underline focus:outline-none"
-            size={name.length || 1} // 입력값 길이에 맞춰 너비 조절
+            style={{ width: `${name.length + 1}ch` }}
           />
         </div>
       </div>
