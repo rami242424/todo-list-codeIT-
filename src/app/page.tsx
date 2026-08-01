@@ -112,7 +112,10 @@ export default function Home() {
                   className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 px-4 py-3"
                 >
                   {/* 체크 버튼: 완료 상태로 전환 */}
-                  <button onClick={() => handleToggle(todo)}>
+                  <button 
+                    onClick={() => handleToggle(todo)}
+                    className="cursor-pointer"
+                  >
                     <img src="/incomplete.svg" alt="미완료" className="h-8 w-8" />
                   </button>
                   {/* 항목 이름 클릭 시 상세 페이지로 이동 */}
@@ -145,7 +148,9 @@ export default function Home() {
                   className="flex items-center gap-3 rounded-3xl border-2 border-slate-900 bg-violet-100 px-4 py-3"
                 >
                   {/* 체크 버튼: 다시 진행 중 상태로 전환 */}
-                  <button onClick={() => handleToggle(todo)}>
+                  <button 
+                    onClick={() => handleToggle(todo)}      className="cursor-pointer"
+                  >
                     <img src="/completed.png" alt="완료" className="h-8 w-8" />
                   </button>
                   <Link href={`/items/${todo.id}`} className="flex-1 line-through">

@@ -72,7 +72,9 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
           내부 컨테이너로 감싸 둘이 붙어 있도록 처리했다.
         */}
         <div className="flex items-center gap-3">
-          <button onClick={() => setIsCompleted(!isCompleted)}>
+          <button 
+            onClick={() => setIsCompleted(!isCompleted)} className="cursor-pointer"
+          >
             <img
               src={isCompleted ? "/completed.png" : "/incomplete.svg"}
               alt={isCompleted ? "완료" : "미완료"}

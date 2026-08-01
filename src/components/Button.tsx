@@ -31,7 +31,7 @@ const colorVariants = {
  * shadow는 시안의 하드 그림자(오프셋 4px, blur 없음)를 재현한 것
  */
 const base =
-  "h-[52px] rounded-3xl border-2 border-slate-900 flex items-center justify-center gap-1 text-base font-bold leading-none whitespace-nowrap shadow-[4px_4px_0_0_#0F172A]";
+  "h-[52px] rounded-3xl border-2 border-slate-900 flex items-center justify-center gap-1 text-base font-bold leading-none whitespace-nowrap shadow-[4px_4px_0_0_#0F172A] cursor-pointer";
 
 export default function Button({
   buttonType,
