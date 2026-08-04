@@ -84,10 +84,6 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
 
           {/*
             입력값 길이에 맞춰 너비가 자동으로 조절되는 input.
-            같은 그리드 셀에 겹쳐둔 span이 실제 렌더링된 텍스트 폭을 만들고
-            input은 w-full로 그 폭을 따라간다.
-            문자 개수로 폭을 계산하면 한글과 영문의 실제 너비 차이를
-            반영할 수 없어, 브라우저가 직접 측정하도록 했다.
           */}
           <div className="inline-grid items-center">
             <span
@@ -122,7 +118,7 @@ export default function TodoDetail({ todo }: { todo: Todo }) {
           {/*
             사진 추가 버튼
             label로 file input을 감싸면 label 클릭이 input 클릭으로 전달되므로
-            input은 숨기고 버튼 이미지만 노출한다.
+            input은 숨기고 버튼 이미지만 노출
           */}
           <label className="absolute bottom-4 right-4 h-14 w-14 cursor-pointer">
             <img src="/addPhotoBtn.png" alt="사진 추가" className="h-full w-full" />
