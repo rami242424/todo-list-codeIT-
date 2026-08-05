@@ -11,7 +11,7 @@ export default async function Page({
 }: {
   params: Promise<{ itemId: string }>;
 }) {
-  // Next.js 15+ 에서 params는 Promise이므로 await이 필요하다
+  
   const { itemId } = await params;
   const todo = await getTodo(Number(itemId));
 
